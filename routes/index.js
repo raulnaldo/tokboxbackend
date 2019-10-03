@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+
+
+
 var path = require('path');
 var _ = require('lodash');
 
@@ -11,6 +14,7 @@ var secret = '3cb47afe1a3da244f776b6a70094fadc5484f408';
 
 try{
   console.log("process.env.TOKBOX_API_KEY:",process.env.TOKBOX_API_KEY);
+  console.log("process.env.TOKBOX_SECRET:",process.env.TOKBOX_SECRET);
 } 
 catch(error){
   console.error(error);
@@ -220,6 +224,21 @@ router.get('/agentinfo/:agentlogin', function (req, res) {
   agentinfo.name= "Raul";
   agentinfo.lastname= "Ortega";  
   res.send(agentinfo);
+});
+
+/**
+ * GET /Sample QueueInfo Rest Api Server to create in Heroku
+ */
+router.get('/queueinfo/:queue', function (req, res) {
+  var queueinfo = {};
+  queueinfo.queue = req.params.queue;
+  queueinfo.loged = 5;
+  queueinfo.ready = 4;
+  queueinfo.available = 3;
+  queueinfo.busy = 1;
+  queueinfo.calls = 2;
+  queueinfo.oldestcall = 53;
+  res.send(queueinfo);
 });
 
 module.exports = router;
