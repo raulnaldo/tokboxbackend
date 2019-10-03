@@ -4,7 +4,6 @@
  * Module dependencies.
  */
 console.log("--->> STARTING APPLICATION")
-console.log('Path.resolve ', path.resolve('.env'), 'or as environment variables' );
 require('dotenv').config();
 var app = require('../app');
 var debug = require('debug')('learning-opentok-node:server');

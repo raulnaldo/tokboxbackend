@@ -8,7 +8,7 @@ var _ = require('lodash');
 
 var apiKey = '46432412';
 var secret = '3cb47afe1a3da244f776b6a70094fadc5484f408';
-console.log('Path.resolve ', path.resolve('.env'), 'or as environment variables' );
+
 
 if (!apiKey || !secret) {
   console.error('=========================================================================================================');
