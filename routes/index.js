@@ -13,8 +13,10 @@ var secret = process.env.TOKBOX_SECRET;
 //var secret = '3cb47afe1a3da244f776b6a70094fadc5484f408';
 
 try{
-  console.log("process.env.TOKBOX_API_KEY:",process.env.TOKBOX_API_KEY);
+  console.log("process.env.TOKBOX_API_KEY:",process.env.TOKBOX_API_KEY);  
   console.log("process.env.TOKBOX_SECRET:",process.env.TOKBOX_SECRET);
+  console.log("apiKey:",apiKey);
+  console.log("secret:",secret);
 } 
 catch(error){
   console.error(error);
@@ -239,6 +241,76 @@ router.get('/queueinfo/:queue', function (req, res) {
   queueinfo.calls = 2;
   queueinfo.oldestcall = 53;
   res.send(queueinfo);
+});
+/**
+ * GET /Sample QueueInfo Rest Api Server to create in Heroku
+ */
+router.get('/customerinfobyphone/:phone', function (req, res) {
+  var customerinfo = {};
+  customerinfo.phone = req.params.phone;
+  if (customerinfo.phone=='699479614'){
+    customerinfo.name='Raul';
+    customerinfo.lastname='Ortega';
+    customerinfo.dni='52864896v';
+    customerinfo.incidencia=true;
+    customerinfo.devices=[
+      {
+        serial:'SES0001',
+        model:'Amelia',
+        version:'0001',
+        status:'active'
+      },
+      {
+        serial:'SES0002',
+        model:'Reloj',
+        version:'0001',
+        status:'active'
+      }      
+    ];
+  }
+  else{
+    if (customerinfo.phone=='0034699479614'){
+      customerinfo.name='Raul';
+      customerinfo.lastname='Ortega';
+      customerinfo.dni='52864896v';
+      customerinfo.incidencia=false;
+      customerinfo.devices=[
+        {
+          serial:'SES0001',
+          model:'Amelia',
+          version:'0001',
+          status:'active'
+        },
+        {
+          serial:'SES0002',
+          model:'Reloj',
+          version:'0001',
+          status:'active'
+        }      
+      ];
+    }
+    else{
+      customerinfo.name='Jose';
+      customerinfo.lastname='Maforo';
+      customerinfo.dni='528887799F';
+      customerinfo.incidencia=true;
+      customerinfo.devices=[
+        {
+          serial:'SES0005',
+          model:'Amelia',
+          version:'0001',
+          status:'active'
+        },
+        {
+          serial:'SES0008',
+          model:'Reloj',
+          version:'0001',
+          status:'active'
+        }      
+      ];      
+    }
+  }
+  res.send(customerinfo);
 });
 
 module.exports = router;
